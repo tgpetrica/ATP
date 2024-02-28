@@ -3,6 +3,11 @@
 void main()
 {
     FILE *f = fopen("fisier.txt", "w");
+    if (!f) // f == NULL
+    {
+        printf("Nu s-a putut creea fisierul.");
+    }
+
     int vector[20], n;
     printf("Scrie dimensiunea vectorului: ");
     scanf("%i", &n);
@@ -10,7 +15,7 @@ void main()
     for (int i = 0; i < n; i++)
     {
         scanf("%i", &vector[i]);
-        fprintf(f, "%i 5", vector[i]);
+        fprintf(f, "%i ", vector[i]);
     }
     fclose(f);
 
