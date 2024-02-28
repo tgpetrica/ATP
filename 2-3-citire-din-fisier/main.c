@@ -20,7 +20,7 @@ void main()
     fclose(f);
     int x;
     f = fopen("fisier.txt", "r");
-    //rewind(f);
+    //rewind(f); // muta cursorul la inceputul fisierului
     //fscanf(f, "%i", &x);
 
     while (!feof(f))
