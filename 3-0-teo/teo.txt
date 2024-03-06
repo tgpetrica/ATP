@@ -1,0 +1,109 @@
+Fisiere binare
+1. secventiale
+2. relative
+
+Fisiere binare secventiale
+
+7,3,10,2,1
+
+Fisiere binare relative
+cod     indicator_stare
+1   ..  1
+2   ..  1
+3   ..  1
+4       0
+5       0
+6       0
+7   ..  1
+8       0
+9       0
+10  ..  1
+
+Daca indicator_stare este 1 inseamna ca linia cod este valida.
+Daca indicator_stare este 0 inseamna ca linia cod este invalida.
+
+Fisiere binare
+
+FILE *f;
+f = fopen("fisier.bin", "wb");
+if (f == NULL) {
+    printf("Eroare la deschiderea fisierului");
+    return 1;
+}   else {
+    printf("Fisierul a fost deschis cu succes");
+    // aplicatie
+}
+
+Operatii IO
+fread(&articol, 1, sizeof(articol), f); // citeste un element de tip articol din fisierul f
+fwrite(articol, 1, sizeof(articol), f); // scrie un element de tip articol in fisierul f
+// 1 - cate elemmente se citesc/scriu din fisier la un moment dat
+
+int v[5] = {1, 2, 3, 4, 5};
+
+fseek(f, spatiu_ocupat_de_un_nr_articole_pentru_deplasare, pozitia_relativa_pentru_deplasare) // muta cursorul in fisier
+                                                                0 - inceputul fisierului
+                                                                1 - pozitia curenta
+                                                                2 - sfarsitul fisierului
+            nr_art * sizeof(articol) - spatiu ocupat de nr_art articole
+
+fseek(f, 0, 0); // muta cursorul la inceputul fisierului
+fseek(f, 0, 2); // muta cursorul la sfarsitul fisierului
+fseek(f, 0, 1); // muta cursorul la pozitia curenta
+
+fseek(f, 3*sizeof(articol), 0); // muta cursorul la al 3-lea articol
+fseek(f, -sizeof(articol), 1); // muta cursorul in fata cu 1 articol
+fseek(f, 0, 2); // muta cursorul la sfarsitul fisierului
+
+ftell(f) // nr_art * sizeof(articol) pozitia din fisier la care este cursorul
+
+fseek(f,0,2);
+loup n = ftell(f); => nr * sizeof(articol)
+nr = n / sizeof(articol); // numarul de articole din fisier
+
+
+typedef struct{
+
+}
+
+tipuri predefinite de date: int, float, char, char[10]
+
+Student:
+    int nr_matricol;
+    char nume[30];
+    int nr_note;
+    int note[10];
+
+typedef struct{
+    int nr_matricol;
+    char nume[30];
+    int nr_note;
+    int note[10];
+} Student;
+
+Student x;
+scanf("%i", &x.nr_matricol);
+getchar();
+gets(x.nume);
+scanf("%i", &x.nr_note);
+for (int i = 0; i < x.nr_note; i++) {
+    scanf("%i", &x.note[i]);
+}
+fwrite(&x, 1, sizeof(x), f); // scrie un element de tip Student in fisierul f
+
+fread(&x, 1, sizeof(x), f); // citeste un element de tip Student din fisierul f
+
+ex.1 Realizati un fisier binar cu informatii despre studenti. 
+
+ex.2 Afisati informatii despre studenti -> cautare dupa numar matricol
+
+scanf("%i", &x.nr_matricol);
+while(x.nr_matricol != -1) {
+    gets(x.nume);
+    scanf("%i", &x.nr_note);
+    for (int i = 0; i < x.nr_note; i++) {
+        scanf("%i", &x.note[i]);
+    }
+    fwrite(&x, 1, sizeof(x), f);
+    scanf("%i", &x.nr_matricol);
+}
