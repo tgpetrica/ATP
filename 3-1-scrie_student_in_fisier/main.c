@@ -44,4 +44,5 @@ void main()
         printf("Introduceti numarul matricol al studentului: ");
         scanf("%i", &s.nr_matricol);
     }
+    fclose(f);
 }
