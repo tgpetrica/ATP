@@ -6,7 +6,7 @@ typedef struct Nod
 {
     int varf;
     struct Nod* copil;
-} Nod;
+} Nod; 
 
 typedef struct Queue 
 {
